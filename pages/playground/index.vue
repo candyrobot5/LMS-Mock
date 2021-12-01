@@ -2,17 +2,17 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <h3>LMS-Mock</h3>
+        <a href="#" @click.prevent="goHome">return Home</a>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        TOP
+        <h4>Playground</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <a href="#" @click.prevent="goPlayground">go Playground page</a>
+        <a href="#" @click.prevent="goDraggablePage"><h5>go Vue.Draggable Test</h5></a>
       </div>
     </div>
   </div>
@@ -20,11 +20,16 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'PlaygroundIndex',
   methods: {
-    goPlayground () {
+    goHome () {
       this.$router.push({
-        path: '/playground',
+        path: '/',
+      })
+    },
+    goDraggablePage () {
+      this.$router.push({
+        path: '/playground/draggable',
       })
     }
   }
