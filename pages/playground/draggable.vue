@@ -11,31 +11,50 @@
       </div>
     </div>
     <draggable
-      class="row"
+      v-bind="draggableSettings"
+      @start="isDragging = true"
+      @end="isDragging = false"
     >
-      <div
-        v-for="(item, idx) in list"
-        :key="idx"
-        class="col-3 mb-2"
+      <transition-group
+        type="transition"
+        :name="!isDragging ? 'flip-list' : null"
+        class="row"
       >
-        <b-card>
-          <template #header>{{item.header}}</template>
-          <b-card-text>
-            {{item.text}}
-          </b-card-text>
-        </b-card>
-      </div>
+        <div
+          v-for="(item, idx) in list"
+          :key="idx"
+          class="col-3 mb-2"
+        >
+          <b-card>
+            <template #header>{{item.header}}</template>
+            <b-card-text>
+              {{item.text}}
+            </b-card-text>
+          </b-card>
+        </div>
+      </transition-group>
     </draggable>
     <div class="row">
       <div class="col-12">
-        <table class="table">
-          <thead>
+        <transition-group
+          type="transition"
+          tag="table"
+          class="table"
+          :name="!isDragging ? 'flip-list' : null"
+        >
+          <thead key="thead">
             <tr>
               <th>ID</th>
               <th>Text</th>
             </tr>
           </thead>
-          <draggable tag="tbody">
+          <draggable
+            tag="tbody"
+            v-bind="draggableSettings"
+            @start="isDragging = true"
+            @end="isDragging = false"
+            key="draggable"
+          >
             <tr
               v-for="(item, idx) in data"
               :key="idx"
@@ -44,7 +63,7 @@
               <td>{{item.text}}</td>
             </tr>
           </draggable>
-        </table>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -83,7 +102,18 @@ export default {
         { id: 8, text: 'data-08' },
         { id: 9, text: 'data-09' },
         { id: 10, text: 'data-10' },
-      ]
+      ],
+      isDragging: false
+    }
+  },
+  computed: {
+    draggableSettings () {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
     }
   },
   methods: {
@@ -95,3 +125,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+</style>
