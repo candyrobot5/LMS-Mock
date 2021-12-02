@@ -1,18 +1,24 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <a href="#" @click.prevent="goHome">return Home</a>
-      </div>
-    </div>
+    <!-- Title -->
     <div class="row">
       <div class="col-12">
         <h4>Playground</h4>
       </div>
     </div>
+    <!-- -- -->
     <div class="row">
       <div class="col-12">
-        <a href="#" @click.prevent="goDraggablePage"><h5>go Vue.Draggable Test</h5></a>
+        <a href="#" @click.prevent="goDraggablePage">
+          <span>Vue.Draggable Test</span>
+          <b-icon icon="chevron-right" />
+        </a>
+      </div>
+      <div class="col-12">
+        <a href="#" @click.prevent="goChatPage">
+          <span>Chat Test</span>
+          <b-icon icon="chevron-right" />
+        </a>
       </div>
     </div>
   </div>
@@ -22,14 +28,14 @@
 export default {
   name: 'PlaygroundIndex',
   methods: {
-    goHome () {
+    goDraggablePage() {
       this.$router.push({
-        path: '/',
+        path: '/playground/draggable'
       })
     },
-    goDraggablePage () {
+    goChatPage() {
       this.$router.push({
-        path: '/playground/draggable',
+        path: '/playground/chat'
       })
     }
   }

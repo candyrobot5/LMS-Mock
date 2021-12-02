@@ -47,10 +47,26 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/apollo',
   ],
+
+  // Bootstrap-Vue configuration:
+  bootstrapVue: {
+    icons: true
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  // Apollo configuration:
+  apollo: {
+    clientConfigs: {
+      // default: {
+      // httpEndpoint: 'http://localhost:4000',
+      // wsEndpoint: 'ws://localhost:4000',
+      // }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

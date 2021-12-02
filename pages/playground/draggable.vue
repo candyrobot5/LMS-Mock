@@ -1,13 +1,15 @@
 <template>
   <div class="container-fluid">
+    <!-- Title -->
     <div class="row">
       <div class="col-12">
-        <a href="#" @click.prevent="goHome">return Home</a>
+        <h4>vue.draggable sample</h4>
       </div>
     </div>
+    <!-- Card -->
     <div class="row">
       <div class="col-12">
-        <h4>vue.draggable テスト</h4>
+        <h5>Card D＆D</h5>
       </div>
     </div>
     <draggable
@@ -20,20 +22,22 @@
         :name="!isDragging ? 'flip-list' : null"
         class="row"
       >
-        <div
-          v-for="(item, idx) in list"
-          :key="idx"
-          class="col-3 mb-2"
-        >
+        <div v-for="(item, idx) in list" :key="idx" class="col-3 mb-2">
           <b-card>
-            <template #header>{{item.header}}</template>
+            <template #header>{{ item.header }}</template>
             <b-card-text>
-              {{item.text}}
+              {{ item.text }}
             </b-card-text>
           </b-card>
         </div>
       </transition-group>
     </draggable>
+    <!-- Table -->
+    <div class="row">
+      <div class="col-12">
+        <h5>Table row D＆D</h5>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <transition-group
@@ -49,18 +53,15 @@
             </tr>
           </thead>
           <draggable
-            tag="tbody"
             v-bind="draggableSettings"
+            key="draggable"
+            tag="tbody"
             @start="isDragging = true"
             @end="isDragging = false"
-            key="draggable"
           >
-            <tr
-              v-for="(item, idx) in data"
-              :key="idx"
-            >
-              <td>{{item.id}}</td>
-              <td>{{item.text}}</td>
+            <tr v-for="(item, idx) in data" :key="idx">
+              <td>{{ item.id }}</td>
+              <td>{{ item.text }}</td>
             </tr>
           </draggable>
         </transition-group>
@@ -73,11 +74,11 @@
 import draggable from 'vuedraggable'
 
 export default {
-  name: 'PlaygloundList',
+  name: 'PlaygloundDraggable',
   components: {
     draggable
   },
-  data () {
+  data() {
     return {
       list: [
         { header: 'head-01', text: 'body-01' },
@@ -89,7 +90,7 @@ export default {
         { header: 'head-07', text: 'body-07' },
         { header: 'head-08', text: 'body-08' },
         { header: 'head-09', text: 'body-09' },
-        { header: 'head-10', text: 'body-10' },
+        { header: 'head-10', text: 'body-10' }
       ],
       data: [
         { id: 1, text: 'data-01' },
@@ -101,28 +102,22 @@ export default {
         { id: 7, text: 'data-07' },
         { id: 8, text: 'data-08' },
         { id: 9, text: 'data-09' },
-        { id: 10, text: 'data-10' },
+        { id: 10, text: 'data-10' }
       ],
       isDragging: false
     }
   },
   computed: {
-    draggableSettings () {
+    draggableSettings() {
       return {
         animation: 200,
-        group: "description",
+        group: 'description',
         disabled: false,
-        ghostClass: "ghost"
-      };
+        ghostClass: 'ghost'
+      }
     }
   },
-  methods: {
-    goHome () {
-      this.$router.push({
-        path: '/',
-      })
-    }
-  }
+  methods: {}
 }
 </script>
 

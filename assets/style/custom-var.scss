@@ -1,0 +1,9 @@
+// default style
+$app-header-height: 64px;
+$app-content-header-height: 32px;
+
+// export
+:export {
+  appHeaderHeight: $app-header-height;
+  appContentHeaderHeight: $app-content-header-height;
+}

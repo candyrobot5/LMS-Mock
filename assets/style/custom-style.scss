@@ -1,0 +1,24 @@
+@import 'custom-var.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+.app-header {
+  height: $app-header-height;
+}
+
+.app-content {
+  &-header {
+    height: $app-content-header-height;
+  }
+}

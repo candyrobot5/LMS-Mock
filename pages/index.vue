@@ -6,13 +6,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
-        TOP
-      </div>
+      <div class="col-12">TOP</div>
     </div>
     <div class="row">
       <div class="col-12">
-        <a href="#" @click.prevent="goPlayground">go Playground page</a>
+        <a href="#" @click.prevent="goPlayground">
+          <span>Playground</span>
+          <b-icon icon="chevron-right" />
+        </a>
       </div>
     </div>
   </div>
@@ -22,9 +23,9 @@
 export default {
   name: 'Home',
   methods: {
-    goPlayground () {
+    goPlayground() {
       this.$router.push({
-        path: '/playground',
+        path: '/playground'
       })
     }
   }
