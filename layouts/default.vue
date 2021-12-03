@@ -2,13 +2,16 @@
   <div>
     <!-- Header -->
     <header>
-      <div v-if="!isHome" class="container-fluid bg-light app-header">
-        <!-- go Home link -->
-        <div class="row my-header-content">
+      <div
+        v-if="$route.matched[0].path !== ''"
+        class="container-fluid bg-light app-header"
+      >
+        <!-- return page link -->
+        <div class="row my-default-header-content">
           <div class="col-12">
-            <a href="#" @click.prevent="goHome">
+            <a href="#" @click.prevent="goAbovePage">
               <b-icon icon="arrow-return-left" />
-              Home
+              Return
             </a>
           </div>
         </div>
@@ -16,7 +19,7 @@
     </header>
     <!-- Main Content -->
     <main>
-      <Nuxt class="my-main-content" />
+      <Nuxt class="my-default-main-content" />
     </main>
   </div>
 </template>
@@ -30,9 +33,11 @@ export default {
     }
   },
   methods: {
-    goHome() {
+    goAbovePage() {
+      const abovePath = this.$route.matched[0].path.replace(/\/[^/]+$/, '')
+      const path = abovePath === '' ? '/' : abovePath
       this.$router.push({
-        path: '/'
+        path
       })
     }
   }
@@ -42,10 +47,10 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/style/default.scss';
 
-.my-header-content {
-  padding: 4px;
+.my-default-header-content {
+  padding: 8px;
 }
-.my-main-content {
-  padding: 4px;
+.my-default-main-content {
+  padding: 8px;
 }
 </style>

@@ -7,35 +7,53 @@
       </div>
     </div>
     <!-- chat received list -->
-    <div class="row bg-light my-received-list">
+    <div ref="chatMessage" class="row bg-light my-chat__messages p-2">
       <div class="col-12">
         <div v-for="(msg, idx) in data" :key="idx">
           <b-row
-            :align-h="myUserId === msg.user.id ? 'end' : 'start'"
+            :align-h="myUser.id === msg.user.id ? 'end' : 'start'"
             align-v="center"
+            class="p-2"
           >
             <!-- avatar: other -->
-            <b-col v-if="myUserId !== msg.user.id" cols="1" class="text-center">
+            <b-col
+              v-if="myUser.id !== msg.user.id"
+              cols="1"
+              class="text-center"
+            >
               <b-avatar variant="secondary" />
               <div class="text-muted small">
                 <small>{{ msg.user.name }}</small>
               </div>
             </b-col>
             <!-- message -->
-            <b-col cols="7" align-self="stretch">
+            <b-col
+              cols="7"
+              align-self="stretch"
+              :class="myUser.id === msg.user.id ? 'text-right' : 'text-left'"
+            >
               <div
-                class="p-3 bg-white border-light rounded-pill"
+                class="p-3 bg-white border d-inline-block"
                 :class="
-                  myUserId === msg.user.id
-                    ? 'my-chat-message__myself'
-                    : 'my-chat-message__other'
+                  myUser.id === msg.user.id
+                    ? 'my-chat__messages--myself'
+                    : 'my-chat__messages--other'
                 "
               >
-                {{ msg.message }}
+                <div
+                  v-for="(message, mIdx) in msg.message.split('\n')"
+                  :key="mIdx"
+                >
+                  {{ message.length > 0 ? message : '\u00A0' }}
+                </div>
               </div>
             </b-col>
             <!-- avatar: myself -->
-            <b-col v-if="myUserId === msg.user.id" cols="1" class="text-center">
+            <b-col
+              v-if="myUser.id === msg.user.id"
+              cols="1"
+              class="text-center"
+            >
               <b-avatar variant="primary" />
               <div class="text-muted small">
                 <small>{{ msg.user.name }}</small>
@@ -47,10 +65,16 @@
     </div>
     <div class="row p-3 fixed-bottom bg-light my-message-box">
       <div class="col-10 p-3">
-        <b-textarea v-model="inputText" rows="4" />
+        <b-textarea v-model.trim="inputText" rows="4" />
       </div>
       <div class="col-2 p-3">
-        <b-button block variant="primary" class="h-100" @click="onSendMessage">
+        <b-button
+          block
+          variant="primary"
+          class="h-100"
+          :disabled="inputText === ''"
+          @click="onSendMessage"
+        >
           Send
         </b-button>
       </div>
@@ -80,24 +104,82 @@ export default {
     const user01 = new ChatUser(1, 'ユーザー01')
     const user03 = new ChatUser(3, 'ユーザー03')
     return {
-      myUserId: 2,
+      myUser,
       data: [
-        new ChatMessage(1, myUser, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(2, user01, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(3, user01, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(4, user03, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(5, user03, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(6, myUser, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(7, user03, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(8, user01, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(9, myUser, 'あいうえおあいうえおあいうえおあいうえお'),
-        new ChatMessage(10, myUser, 'あいうえおあいうえおあいうえおあいうえお')
+        new ChatMessage(
+          1,
+          myUser,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          2,
+          user01,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          3,
+          user01,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          4,
+          user03,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          5,
+          user03,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          6,
+          myUser,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          7,
+          user03,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          8,
+          user01,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          9,
+          myUser,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        ),
+        new ChatMessage(
+          10,
+          myUser,
+          'あいうえおあいうえおあいうえおあいうえお\nかきくけこかきくけこかきくけこかきくけこ'
+        )
       ],
       inputText: ''
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      // 下へスクロールする
+      this.$refs.chatMessage.scrollTop = this.$refs.chatMessage.scrollHeight
+    })
+  },
   methods: {
-    onSendMessage() {}
+    onSendMessage() {
+      // TODO: メッセージを送信する
+      const lastMessage = this.data.reduce((a, b) => (a.id > b.id ? a : b))
+      const nextId = lastMessage.id + 1
+      const inputText = this.inputText.trim()
+      const msg = new ChatMessage(nextId, this.myUser, inputText)
+      this.data.push(msg)
+      this.inputText = ''
+      this.$nextTick(() => {
+        // 下へスクロールする
+        this.$refs.chatMessage.scrollTop = this.$refs.chatMessage.scrollHeight
+      })
+    }
   }
 }
 </script>
@@ -107,26 +189,30 @@ export default {
 
 $my-message-box-height: 150px;
 
-.my-received-list {
-  height: calc(
-    100vh - $my-message-box-height - $app-header-height -
-      $app-content-header-height - 8px
-  );
-  overflow: scroll;
-}
 .my-message-box {
   height: $my-message-box-height;
 }
-.my-chat-message {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
-  &__myself {
-    border-top-right-radius: 0 !important;
-  }
-  &__other {
-    border-bottom-left-radius: 0 !important;
+.my-chat {
+  &__messages {
+    height: calc(
+      100vh - $my-message-box-height - $app-header-height -
+        $app-content-header-height - 16px
+    );
+    overflow: scroll;
+    &--myself {
+      border-top-left-radius: 50rem;
+      border-top-right-radius: 0 !important;
+      border-bottom-left-radius: 50rem;
+      border-bottom-right-radius: 50rem;
+      text-align: right;
+    }
+    &--other {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 50rem;
+      border-bottom-left-radius: 50rem;
+      border-bottom-right-radius: 50rem;
+      text-align: left;
+    }
   }
 }
 </style>
