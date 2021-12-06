@@ -58,10 +58,10 @@ export default {
   // Apollo configuration:
   apollo: {
     clientConfigs: {
-      // default: {
-      // httpEndpoint: 'http://localhost:4000',
-      // wsEndpoint: 'ws://localhost:4000',
-      // }
+      default: {
+        httpEndpoint: 'http://localhost:8080'
+        // wsEndpoint: 'ws://localhost:8080'
+      }
     }
   },
 

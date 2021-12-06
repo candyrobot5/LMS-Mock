@@ -1,9 +1,11 @@
 @import 'custom-var.scss';
 
+/*
 * {
   margin: 0;
   padding: 0;
 }
+*/
 
 html {
   height: 100%;
@@ -30,6 +32,10 @@ body {
       /* .app-main-content-header */
       &-header {
         height: $app-main-content-header-height;
+      }
+      /* .app-main-content-body */
+      &-body {
+        height: calc(100% - $app-main-content-header-height);
       }
     }
   }

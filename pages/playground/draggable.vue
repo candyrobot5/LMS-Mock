@@ -139,7 +139,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '~/assets/style/default.scss';
+
 .flip-list-move {
   transition: transform 0.5s;
 }
