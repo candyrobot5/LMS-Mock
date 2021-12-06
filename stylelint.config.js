@@ -11,6 +11,12 @@ module.exports = {
       false,
       { ignoreProperties: ['/^app/', '/^sidebar/'] }
     ],
-    'comment-empty-line-before': [false]
+    'comment-empty-line-before': [false],
+    'selector-pseudo-element-no-unknown': [
+      true,
+      {
+        ignorePseudoElements: ['v-deep']
+      }
+    ]
   }
 }

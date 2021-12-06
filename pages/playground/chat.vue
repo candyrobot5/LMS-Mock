@@ -3,82 +3,89 @@
     <!-- Title -->
     <b-row class="app-main-content-header">
       <b-col cols="12">
-        <h4>Chat</h4>
+        <h4>チャット</h4>
       </b-col>
     </b-row>
-    <!-- chat received list -->
-    <b-row ref="chatMessage" class="bg-light my-chat__messages p-2">
+    <!-- content body -->
+    <b-row no-gutters class="app-main-content-body">
       <b-col cols="12">
-        <div v-for="(msg, idx) in data" :key="idx">
-          <b-row
-            :align-h="myUser.id === msg.user.id ? 'end' : 'start'"
-            align-v="center"
-            class="p-2"
-          >
-            <!-- avatar: other -->
-            <b-col
-              v-if="myUser.id !== msg.user.id"
-              cols="1"
-              class="text-center"
-            >
-              <b-avatar variant="secondary" />
-              <div class="text-muted small">
-                <small>{{ msg.user.name }}</small>
-              </div>
-            </b-col>
-            <!-- message -->
-            <b-col
-              cols="7"
-              align-self="stretch"
-              :class="myUser.id === msg.user.id ? 'text-right' : 'text-left'"
-            >
-              <div
-                class="p-3 bg-white border d-inline-block"
-                :class="
-                  myUser.id === msg.user.id
-                    ? 'my-chat__messages--myself'
-                    : 'my-chat__messages--other'
-                "
+        <!-- chat received list -->
+        <b-row ref="chatMessage" class="bg-light my-chat__messages p-2">
+          <b-col cols="12">
+            <div v-for="(msg, idx) in data" :key="idx">
+              <b-row
+                :align-h="myUser.id === msg.user.id ? 'end' : 'start'"
+                align-v="center"
+                class="p-2"
               >
-                <div
-                  v-for="(message, mIdx) in msg.message.split('\n')"
-                  :key="mIdx"
+                <!-- avatar: other -->
+                <b-col
+                  v-if="myUser.id !== msg.user.id"
+                  cols="1"
+                  class="text-center"
                 >
-                  {{ message.length > 0 ? message : '\u00A0' }}
-                </div>
-              </div>
-            </b-col>
-            <!-- avatar: myself -->
-            <b-col
-              v-if="myUser.id === msg.user.id"
-              cols="1"
-              class="text-center"
-            >
-              <b-avatar variant="primary" />
-              <div class="text-muted small">
-                <small>{{ msg.user.name }}</small>
-              </div>
-            </b-col>
-          </b-row>
-        </div>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="12">
-        <b-row class="bg-light my-message-box">
-          <b-col cols="10" class="p-3">
-            <b-textarea v-model.trim="inputText" rows="4" class="h-100" />
+                  <b-avatar variant="secondary" />
+                  <div class="text-muted small">
+                    <small>{{ msg.user.name }}</small>
+                  </div>
+                </b-col>
+                <!-- message -->
+                <b-col
+                  cols="7"
+                  align-self="stretch"
+                  :class="
+                    myUser.id === msg.user.id ? 'text-right' : 'text-left'
+                  "
+                >
+                  <div
+                    class="p-3 bg-white border d-inline-block"
+                    :class="
+                      myUser.id === msg.user.id
+                        ? 'my-chat__messages--myself'
+                        : 'my-chat__messages--other'
+                    "
+                  >
+                    <div
+                      v-for="(message, mIdx) in msg.message.split('\n')"
+                      :key="mIdx"
+                    >
+                      {{ message.length > 0 ? message : '\u00A0' }}
+                    </div>
+                  </div>
+                </b-col>
+                <!-- avatar: myself -->
+                <b-col
+                  v-if="myUser.id === msg.user.id"
+                  cols="1"
+                  class="text-center"
+                >
+                  <b-avatar variant="primary" />
+                  <div class="text-muted small">
+                    <small>{{ msg.user.name }}</small>
+                  </div>
+                </b-col>
+              </b-row>
+            </div>
           </b-col>
-          <b-col cols="2" class="p-3">
-            <b-button
-              block
-              variant="primary"
-              class="h-100"
-              :disabled="inputText === ''"
-              @click="onSendMessage"
-            >
-              Send
-            </b-button>
+        </b-row>
+        <b-row>
+          <b-col cols="12">
+            <b-row class="bg-light my-message-box">
+              <b-col cols="10" class="p-3">
+                <b-textarea v-model.trim="inputText" rows="4" class="h-100" />
+              </b-col>
+              <b-col cols="2" class="p-3">
+                <b-button
+                  block
+                  variant="primary"
+                  class="h-100"
+                  :disabled="inputText === ''"
+                  @click="onSendMessage"
+                >
+                  Send
+                </b-button>
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </b-col>
@@ -87,6 +94,7 @@
 </template>
 
 <script>
+// import gql from 'graphql-tag'
 class ChatUser {
   constructor(id, name) {
     this.id = id
@@ -163,6 +171,9 @@ export default {
       ],
       inputText: ''
     }
+  },
+  created() {
+    // await this.$apollo.query()
   },
   mounted() {
     this.$nextTick(() => {

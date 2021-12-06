@@ -40,14 +40,21 @@ export default {
         },
         {
           href: '/',
-          title: 'ホーム'
-          // icon: { element: 'img', attributes: { src: '/icons/icons_home.svg' } }
+          title: 'ホーム',
+          icon: {
+            element: 'b-icon',
+            attributes: {
+              icon: 'house-door-fill'
+            }
+          }
         },
         {
-          title: 'Playground',
+          title: 'モックアップ一覧',
           child: [
-            { href: '/playground/draggable', title: 'List Draggable' },
-            { href: '/playground/chat', title: 'Chat' }
+            { href: '/playground/chat', title: '2. チャット' },
+            { href: '/playground/course-manage', title: '3. コース管理' },
+            { href: '/playground/draggable', title: '4. リストのドラッグ' },
+            { href: '/playground/graph', title: '5. 集中度測定' }
           ]
         }
       ]
@@ -94,27 +101,21 @@ export default {
     // サイドバー非表示
     &--hidden {
       max-width: $sidebar-closed-width !important;
-      & .vsm--icon {
+      &::v-deep .vsm--icon {
         display: none !important;
       }
-      & .vsm--item {
+      &::v-deep .vsm--item {
         display: none !important;
       }
-      & .vsm--toggle-btn {
+      &::v-deep .vsm--toggle-btn {
         display: none !important;
       }
     }
   }
   // サイドバー
-  & .v-sidebar-menu {
-    margin-top: $app-header-height;
-    // サイドバーリスト
-    .vsm--list {
-      padding: 0 !important;
-    }
+  &::v-deep .v-sidebar-menu {
     // 子アイテムのリンク
-    .vsm--link {
-      font-size: 0.8rem;
+    & .vsm--link {
       &.vsm--link_active {
         box-shadow: none;
       }
@@ -124,25 +125,29 @@ export default {
         -webkit-box-shadow: none !important;
         // 選択済みリンクのタイトル
         & .vsm--title {
-          color: #fff;
+          color: #4c565f;
         }
       }
-      // 子アイテム2階層目
-      &.vsm--link_level-2 {
-        padding-left: 5rem;
-        &:not(.vsm--link_active) {
-          background-color: #4c565f;
-          color: #c0c0c0;
-        }
+    }
+    // 子アイテム1階層目
+    & .vsm--link_level-1 {
+      padding-left: 1rem;
+      color: #4c565f;
+    }
+    // 子アイテム2階層目
+    & .vsm--link_level-2 {
+      padding-left: 2.5rem;
+      &:not(.vsm--link_active) {
+        color: #4c565f;
       }
     }
     // 子アイテムを含む親アイテム右側の矢印
-    .vsm--arrow {
+    & .vsm--arrow {
       display: none;
     }
-    // iconのサイズ
-    .vsm--icon {
-      padding: 5px;
+    // icon
+    & .vsm--icon {
+      padding: 0;
     }
   }
 }

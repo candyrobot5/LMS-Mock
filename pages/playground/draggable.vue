@@ -3,81 +3,86 @@
     <!-- Title -->
     <b-row no-gutters class="app-main-content-header">
       <b-col cols="12">
-        <h4>List Draggable</h4>
+        <h4>リストのドラッグ</h4>
       </b-col>
     </b-row>
-    <!-- Card -->
-    <b-row no-gutters>
+    <!-- content body -->
+    <b-row no-gutters class="app-main-content-body">
       <b-col cols="12">
-        <h6>Card D＆D</h6>
-      </b-col>
-    </b-row>
-    <b-row no-gutters>
-      <b-col cols="12">
-        <b-card class="mx-3">
-          <draggable
-            v-bind="draggableSettings"
-            @start="isDragging = true"
-            @end="isDragging = false"
-          >
-            <transition-group
-              type="transition"
-              :name="!isDragging ? 'flip-list' : null"
-              class="row"
-            >
-              <b-col
-                v-for="(item, idx) in list"
-                :key="idx"
-                cols="3"
-                class="mb-2"
+        <!-- Card -->
+        <b-row no-gutters>
+          <b-col cols="12">
+            <h6>Card D＆D</h6>
+          </b-col>
+        </b-row>
+        <b-row no-gutters>
+          <b-col cols="12">
+            <b-card class="mx-3">
+              <draggable
+                v-bind="draggableSettings"
+                @start="isDragging = true"
+                @end="isDragging = false"
               >
-                <b-card>
-                  <template #header>{{ item.header }}</template>
-                  <b-card-text>
-                    {{ item.text }}
-                  </b-card-text>
-                </b-card>
-              </b-col>
-            </transition-group>
-          </draggable>
-        </b-card>
-      </b-col>
-    </b-row>
-    <!-- Table -->
-    <b-row no-gutters class="mt-3">
-      <b-col cols="12">
-        <h6>Table row D＆D</h6>
-      </b-col>
-    </b-row>
-    <b-row no-gutters>
-      <b-col cols="12">
-        <b-card class="mx-3">
-          <transition-group
-            type="transition"
-            tag="table"
-            class="table"
-            :name="!isDragging ? 'flip-list' : null"
-          >
-            <thead key="thead">
-              <tr>
-                <th>ID</th>
-                <th>Text</th>
-              </tr>
-            </thead>
-            <draggable
-              v-bind="draggableSettings"
-              key="draggable"
-              tag="tbody"
-              @start="isDragging = true"
-              @end="isDragging = false"
-            >
-              <tr v-for="(item, idx) in data" :key="idx" class="bg-light">
-                <td>{{ item.id }}</td>
-                <td>{{ item.text }}</td>
-              </tr>
-            </draggable>
-          </transition-group>
-        </b-card>
+                <transition-group
+                  type="transition"
+                  :name="!isDragging ? 'flip-list' : null"
+                  class="row"
+                >
+                  <b-col
+                    v-for="(item, idx) in list"
+                    :key="idx"
+                    cols="3"
+                    class="mb-2"
+                  >
+                    <b-card>
+                      <template #header>{{ item.header }}</template>
+                      <b-card-text>
+                        {{ item.text }}
+                      </b-card-text>
+                    </b-card>
+                  </b-col>
+                </transition-group>
+              </draggable>
+            </b-card>
+          </b-col>
+        </b-row>
+        <!-- Table -->
+        <b-row no-gutters class="mt-3">
+          <b-col cols="12">
+            <h6>Table row D＆D</h6>
+          </b-col>
+        </b-row>
+        <b-row no-gutters>
+          <b-col cols="12">
+            <b-card class="mx-3">
+              <transition-group
+                type="transition"
+                tag="table"
+                class="table"
+                :name="!isDragging ? 'flip-list' : null"
+              >
+                <thead key="thead">
+                  <tr>
+                    <th>ID</th>
+                    <th>Text</th>
+                  </tr>
+                </thead>
+                <draggable
+                  v-bind="draggableSettings"
+                  key="draggable"
+                  tag="tbody"
+                  @start="isDragging = true"
+                  @end="isDragging = false"
+                >
+                  <tr v-for="(item, idx) in data" :key="idx" class="bg-light">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.text }}</td>
+                  </tr>
+                </draggable>
+              </transition-group>
+            </b-card>
+          </b-col>
+        </b-row>
       </b-col>
     </b-row>
   </b-container>
