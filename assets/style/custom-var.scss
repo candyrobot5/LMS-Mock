@@ -1,9 +1,22 @@
 // default style
 $app-header-height: 64px;
-$app-content-header-height: 32px;
+$app-header-content-padding: 8px;
+$app-main-content-header-height: 32px;
+$app-main-content-padding: 8px;
+
+// sidebar
+$sidebar-closed-width: 0;
+$sidebar-opened-width: 250px;
+$sidebar-collapsed-width: 50px;
 
 // export
+// `~/stylelint.config.js` is definable variable setting.
 :export {
   appHeaderHeight: $app-header-height;
-  appContentHeaderHeight: $app-content-header-height;
+  appHeaderContentPadding: $app-header-content-padding;
+  appMainContentHeaderHeight: $app-main-content-header-height;
+  appMainContentPadding: $app-main-content-padding;
+  sidebarClosedWidth: $sidebar-closed-width;
+  sidebarOpenedWidth: $sidebar-opened-width;
+  sidebarCollapsedWidth: $sidebar-collapsed-width;
 }

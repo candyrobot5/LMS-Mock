@@ -13,12 +13,24 @@ body {
   height: 100%;
 }
 
-.app-header {
-  height: $app-header-height;
-}
-
-.app-content {
+/* .app */
+.app {
+  /* .app-header */
   &-header {
-    height: $app-content-header-height;
+    height: $app-header-height;
+    /* .app-header-content */
+    &-content {
+      padding: $app-header-content-padding;
+    }
+  }
+  /* .app-main */
+  &-main {
+    /* .app-main-content */
+    &-content {
+      /* .app-main-content-header */
+      &-header {
+        height: $app-main-content-header-height;
+      }
+    }
   }
 }

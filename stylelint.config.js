@@ -7,6 +7,10 @@ module.exports = {
       true,
       { ignorePseudoClasses: ['export'] }
     ],
-    'property-no-unknown': [false, { ignoreProperties: ['/^app/'] }]
+    'property-no-unknown': [
+      false,
+      { ignoreProperties: ['/^app/', '/^sidebar/'] }
+    ],
+    'comment-empty-line-before': [false]
   }
 }

@@ -1,14 +1,14 @@
 <template>
-  <div class="container-fluid">
+  <b-container fluid>
     <!-- Title -->
-    <div class="row app-content-header">
-      <div class="col-12">
-        <h4>chat sample</h4>
-      </div>
-    </div>
+    <b-row class="app-main-content-header">
+      <b-col cols="12">
+        <h4>Chat</h4>
+      </b-col>
+    </b-row>
     <!-- chat received list -->
-    <div ref="chatMessage" class="row bg-light my-chat__messages p-2">
-      <div class="col-12">
+    <b-row ref="chatMessage" class="bg-light my-chat__messages p-2">
+      <b-col cols="12">
         <div v-for="(msg, idx) in data" :key="idx">
           <b-row
             :align-h="myUser.id === msg.user.id ? 'end' : 'start'"
@@ -61,25 +61,29 @@
             </b-col>
           </b-row>
         </div>
-      </div>
-    </div>
-    <div class="row p-3 fixed-bottom bg-light my-message-box">
-      <div class="col-10 p-3">
-        <b-textarea v-model.trim="inputText" rows="4" />
-      </div>
-      <div class="col-2 p-3">
-        <b-button
-          block
-          variant="primary"
-          class="h-100"
-          :disabled="inputText === ''"
-          @click="onSendMessage"
-        >
-          Send
-        </b-button>
-      </div>
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col cols="12">
+        <b-row class="bg-light my-message-box">
+          <b-col cols="10" class="p-3">
+            <b-textarea v-model.trim="inputText" rows="4" class="h-100" />
+          </b-col>
+          <b-col cols="2" class="p-3">
+            <b-button
+              block
+              variant="primary"
+              class="h-100"
+              :disabled="inputText === ''"
+              @click="onSendMessage"
+            >
+              Send
+            </b-button>
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -190,15 +194,17 @@ export default {
 $my-message-box-height: 150px;
 
 .my-message-box {
-  height: $my-message-box-height;
+  height: calc($my-message-box-height + ($app-main-content-padding * 2));
 }
 .my-chat {
+  /* .my-chat__mesages */
   &__messages {
     height: calc(
       100vh - $my-message-box-height - $app-header-height -
-        $app-content-header-height - 16px
+        $app-main-content-header-height - ($app-main-content-padding * 2)
     );
     overflow: scroll;
+    /* .my-chat__mesages--myself */
     &--myself {
       border-top-left-radius: 50rem;
       border-top-right-radius: 0 !important;
@@ -206,6 +212,7 @@ $my-message-box-height: 150px;
       border-bottom-right-radius: 50rem;
       text-align: right;
     }
+    /* .my-chat__mesages--other */
     &--other {
       border-top-left-radius: 0 !important;
       border-top-right-radius: 50rem;

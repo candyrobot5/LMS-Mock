@@ -1,43 +1,17 @@
 <template>
-  <div class="container-fluid">
+  <b-container fluid>
     <!-- Title -->
-    <div class="row">
-      <div class="col-12">
+    <b-row no-gutters class="app-main-content-header">
+      <b-col cols="12">
         <h4>Playground</h4>
-      </div>
-    </div>
-    <!-- -- -->
-    <div class="row">
-      <div class="col-12">
-        <a href="#" @click.prevent="goDraggablePage">
-          <span>Vue.Draggable Test</span>
-          <b-icon icon="chevron-right" />
-        </a>
-      </div>
-      <div class="col-12">
-        <a href="#" @click.prevent="goChatPage">
-          <span>Chat Test</span>
-          <b-icon icon="chevron-right" />
-        </a>
-      </div>
-    </div>
-  </div>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 export default {
   name: 'PlaygroundIndex',
-  methods: {
-    goDraggablePage() {
-      this.$router.push({
-        path: '/playground/draggable'
-      })
-    },
-    goChatPage() {
-      this.$router.push({
-        path: '/playground/chat'
-      })
-    }
-  }
+  methods: {}
 }
 </script>
