@@ -34,9 +34,7 @@ export default {
   computed: {
     isHome() {
       return this.$route.matched[0].path === ''
-    }
-  },
-  methods: {
+    },
     // main-content style
     styleMainContent() {
       let cls = null
@@ -50,7 +48,9 @@ export default {
         default: // SidebarState.OPENED
       }
       return cls
-    },
+    }
+  },
+  methods: {
     // サイドバーの開閉イベント
     onUpdateSidebarState(evt) {
       this.sidebarState = evt

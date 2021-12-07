@@ -6,6 +6,7 @@
       :width="width"
       :width-collapsed="widthCollapsed"
       :hide-toggle="true"
+      :disable-hover="true"
       class="my-sidebar__content"
       :class="{ 'my-sidebar__content--hidden': isHidden }"
       @toggle-collapse="onToggleCollapse"
@@ -17,6 +18,7 @@
 /**
  * used `vue-sidebar-menu` plugin
  */
+import { SidebarMenu } from 'vue-sidebar-menu'
 import style from '~/assets/style/custom-var.scss'
 
 export class SidebarState {
@@ -26,6 +28,9 @@ export class SidebarState {
 }
 
 export default {
+  components: {
+    SidebarMenu
+  },
   data() {
     return {
       $_privateState: SidebarState.OPENED,
@@ -40,7 +45,7 @@ export default {
         },
         {
           href: '/',
-          title: 'ホーム',
+          title: 'Home',
           icon: {
             element: 'b-icon',
             attributes: {
@@ -50,6 +55,12 @@ export default {
         },
         {
           title: 'モックアップ一覧',
+          icon: {
+            element: 'b-icon',
+            attributes: {
+              icon: 'puzzle-fill'
+            }
+          },
           child: [
             { href: '/playground/chat', title: '2. チャット' },
             { href: '/playground/course-manage', title: '3. コース管理' },
@@ -85,7 +96,21 @@ export default {
       }
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.resizeWindow)
+    this.resizeWindow()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.resizeWindow)
+  },
   methods: {
+    resizeWindow() {
+      if (window.innerWidth < 768) {
+        this.state = SidebarState.COLLAPSED
+      } else {
+        this.state = SidebarState.OPENED
+      }
+    },
     onToggleCollapse(collapsed) {
       this.state = collapsed ? SidebarState.COLLAPSED : SidebarState.OPENED
     }
