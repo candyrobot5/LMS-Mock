@@ -15,7 +15,7 @@
 
 <script>
 /**
- * used `vue-sidebar-menu`
+ * used `vue-sidebar-menu` plugin
  */
 import style from '~/assets/style/custom-var.scss'
 

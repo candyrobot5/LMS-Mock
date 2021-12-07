@@ -48,16 +48,16 @@
             <b-card class="h-100 bg-transparent" body-class="p-2">
               <b-row>
                 <b-col cols="12">
-                  <h4>{{ seletedCourseName }}</h4>
+                  <h4>{{ seletedCourseNameLabel }}</h4>
                 </b-col>
               </b-row>
               <!-- course group -->
               <b-row>
                 <b-col cols="4">
                   <b-form-group>
-                    <label for="course-group">組織の選択</label>
+                    <label for="myCourseGroup">組織の選択</label>
                     <b-form-select
-                      id="course-group"
+                      id="myCourseGroup"
                       v-model="selectedGroupId"
                       :options="groupsOptions"
                     />
@@ -251,7 +251,7 @@ export default {
     }
   },
   computed: {
-    seletedCourseName() {
+    seletedCourseNameLabel() {
       return (
         this.courses.find((course) => course.id === this.selectedCourseId)
           ?.name ?? ''
