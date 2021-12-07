@@ -9,7 +9,7 @@ module.exports = {
     ],
     'property-no-unknown': [
       false,
-      { ignoreProperties: ['/^app/', '/^sidebar/'] }
+      { ignoreProperties: ['/^app/', '/^sidebar/', '/^chart/'] }
     ],
     'comment-empty-line-before': [false],
     'selector-pseudo-element-no-unknown': [

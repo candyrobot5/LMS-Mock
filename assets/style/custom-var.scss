@@ -9,6 +9,10 @@ $sidebar-closed-width: 0;
 $sidebar-opened-width: 250px;
 $sidebar-collapsed-width: 50px;
 
+// chart
+$chart-width: 400px;
+$chart-height: 300px;
+
 // export
 // `~/stylelint.config.js` is definable variable setting.
 :export {
@@ -19,4 +23,6 @@ $sidebar-collapsed-width: 50px;
   sidebarClosedWidth: $sidebar-closed-width;
   sidebarOpenedWidth: $sidebar-opened-width;
   sidebarCollapsedWidth: $sidebar-collapsed-width;
+  chartWidth: $chart-width;
+  chartHeight: $chart-height;
 }
