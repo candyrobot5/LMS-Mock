@@ -29,8 +29,8 @@
                   class="row"
                 >
                   <b-col
-                    v-for="(item, idx) in list"
-                    :key="idx"
+                    v-for="(item, lIdx) in list"
+                    :key="lIdx"
                     cols="3"
                     class="mb-2"
                   >
@@ -74,7 +74,7 @@
                   @start="isDragging = true"
                   @end="isDragging = false"
                 >
-                  <tr v-for="(item, idx) in data" :key="idx" class="bg-light">
+                  <tr v-for="(item, dIdx) in data" :key="dIdx" class="bg-light">
                     <td>{{ item.id }}</td>
                     <td>{{ item.text }}</td>
                   </tr>
