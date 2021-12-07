@@ -24,7 +24,9 @@
                   cols="1"
                   class="text-center"
                 >
-                  <b-avatar variant="secondary" />
+                  <div class="my-chat__messages-avatar">
+                    <b-avatar variant="secondary" />
+                  </div>
                   <div class="text-muted small">
                     <small>{{ msg.user.name }}</small>
                   </div>
@@ -59,7 +61,9 @@
                   cols="1"
                   class="text-center"
                 >
-                  <b-avatar variant="primary" />
+                  <div class="my-chat__messages-avatar">
+                    <b-avatar variant="primary" />
+                  </div>
                   <div class="text-muted small">
                     <small>{{ msg.user.name }}</small>
                   </div>
@@ -215,6 +219,13 @@ $my-message-box-height: 150px;
         $app-main-content-header-height - ($app-main-content-padding * 2)
     );
     overflow: scroll;
+    /* .my-chat__messages-avatar */
+    &-avatar {
+      display: inline-flex;
+      align-items: center;
+      width: 64px;
+      height: 64px;
+    }
     /* .my-chat__mesages--myself */
     &--myself {
       border-top-left-radius: 50rem;
