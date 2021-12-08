@@ -24,6 +24,8 @@
                 <!-- GraphChart.vue -->
                 <graph-chart
                   :graph-data="graphData"
+                  :is-disabled-prev-button="isDisabledPrevButton"
+                  :is-disabled-next-button="isDisabledNextButton"
                   @click:prev="onPrevData"
                   @click:next="onNextData"
                 />
@@ -98,13 +100,13 @@ export default {
       new Date()
     )
     const toDate = this.$dateFns.parseISO(
-      '2021-12-02T00:00:00+09:00',
+      '2021-12-05T00:00:00+09:00',
       // '2021-12-31T23:59:59+09:00',
       new Date()
     )
     const rawData = [] // { x: timestamp, y: value }
-    const step = 1000 * 60 * 5 // 5 minutes
-    for (let t = fromDate.getTime(); t <= toDate.getTime(); t = t + step) {
+    const stepTime = 1000 * 60 * 5 // 5 minutes
+    for (let t = fromDate.getTime(); t <= toDate.getTime(); t = t + stepTime) {
       const val = Math.floor(Math.random() * 101) // 0 - 100
       const data = { x: t, y: val }
       rawData.push(data)
@@ -130,15 +132,33 @@ export default {
       ],
       rawData,
       baseIndex: 0,
-      perPage: 15,
-      stepSize: 5
+      perPage: 100,
+      stepTime
     }
   },
   computed: {
     graphData() {
       const rawData = [...this.rawData]
       const data = rawData.splice(this.baseIndex, this.perPage)
+      if (data.length < this.perPage) {
+        const diff = this.perPage - data.length
+        for (let i = 0; i < diff; i++) {
+          const lastRawData = rawData[rawData.length - 1]
+          const timestamp = lastRawData.x + this.stepTime * (i + 1)
+          const d = { x: timestamp, y: null }
+          data.push(d)
+        }
+      }
       return data
+    },
+    isDisabledPrevButton() {
+      return Math.trunc(this.baseIndex / this.perPage) <= 0
+    },
+    isDisabledNextButton() {
+      return (
+        Math.trunc(this.baseIndex / this.perPage) >=
+        Math.trunc(this.rawData.length / this.perPage)
+      )
     }
   },
   methods: {
@@ -146,11 +166,11 @@ export default {
     onPlayConcentrationMiddle() {},
     onPlayConcentrationHigh() {},
     onPrevData() {
-      const idx = this.baseIndex - this.stepSize
+      const idx = this.baseIndex - this.perPage
       this.baseIndex = idx > 0 ? idx : 0
     },
     onNextData() {
-      const idx = this.baseIndex + this.stepSize
+      const idx = this.baseIndex + this.perPage
       this.baseIndex = idx < this.rawData.length ? idx : this.rawData.length - 1
     }
   }

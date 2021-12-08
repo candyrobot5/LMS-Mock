@@ -1,30 +1,46 @@
 <template>
-  <div class="my-graph-chart">
+  <div
+    ref="graphChart"
+    class="my-graph-chart"
+    @mouseover="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
     <div class="my-graph-chart-wrapper">
       <!-- chart -->
       <div class="my-graph-chart-content">
         <canvas
           id="myGraphChart"
-          :width="style.chartWidth"
+          :width="style.chartMaxWidth"
           :height="style.chartHeight"
         />
       </div>
       <!-- controller -->
-      <div class="my-graph-chart-controller">
-        <b-row align-h="between">
-          <b-col class="text-left my-graph-chart-control__button">
-            <b-button class="px-1 py-0" variant="light" @click="onPrev">
-              <b-icon icon="caret-left-fill" />
+      <div v-show="isHovered" class="my-graph-chart-controller">
+        <b-row align-h="between" align-v="center" class="h-100">
+          <b-col class="text-left my-graph-chart-controller__button">
+            <b-button
+              class="px-1 py-0 h-100"
+              variant="light"
+              :disabled="isDisabledPrevButton"
+              @click="onPrev"
+            >
+              <b-icon icon="caret-left-fill" variant="info" />
             </b-button>
           </b-col>
-          <b-col class="text-right my-graph-chart-control__button">
-            <b-button class="px-1 py-0" variant="light" @click="onNext">
-              <b-icon icon="caret-right-fill" />
+          <b-col class="text-right my-graph-chart-controller__button">
+            <b-button
+              class="px-1 py-0 h-100"
+              variant="light"
+              :disabled="isDisabledNextButton"
+              @click="onNext"
+            >
+              <b-icon icon="caret-right-fill" variant="info" />
             </b-button>
           </b-col>
         </b-row>
       </div>
     </div>
+    <canvas id="myGraphChartAxis" :width="0" :height="style.chartHeight" />
   </div>
 </template>
 
@@ -39,13 +55,24 @@ export default {
       type: Array,
       required: true,
       default: () => []
+    },
+    isDisabledPrevButton: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isDisabledNextButton: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
     return {
       style,
       chart: null,
-      options: {}
+      options: {},
+      isHovered: false
     }
   },
   computed: {
@@ -58,13 +85,16 @@ export default {
     }
   },
   watch: {
+    // データが更新されたら、グラフを更新する
     graphData: {
       handler(newData) {
         const chart = this.chart
         if (chart) {
           chart.data.datasets[0].data = newData
           chart.data.labels = this.graphLabel
-          chart.update() // グラフ更新
+          this.$nextTick(() => {
+            chart.update() // グラフ更新
+          })
         }
       },
       deep: true,
@@ -91,7 +121,10 @@ export default {
         ]
       },
       options: {
-        animate: false,
+        spanGaps: true,
+        animation: {
+          duration: 0
+        },
         plugins: {
           // ツールチップ
           tooltip: {
@@ -143,9 +176,11 @@ export default {
   },
   methods: {
     onPrev() {
+      this.$refs.graphChart.scrollLeft = parseInt(this.style.chartMaxWidth)
       this.$emit('click:prev')
     },
     onNext() {
+      this.$refs.graphChart.scrollLeft = 0
       this.$emit('click:next')
     }
   }
@@ -156,18 +191,39 @@ export default {
 @import '~/assets/style/default.scss';
 
 #myGraphChart {
-  width: $chart-width;
+  width: $chart-max-width;
   height: $chart-height;
 }
 
 .my-graph-chart {
-  max-width: $chart-width;
+  position: relative;
+  overflow-x: scroll;
   min-height: $chart-height;
+  /* .my-graph-chart > canvas */
+  & > canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+  }
+  /* .my-graph-chart-wrapper */
   &-wrapper {
-    width: 100%;
+    width: $chart-max-width;
     height: 100%;
     background-color: #fff;
   }
+  /* .my-graph-chart-content */
   // &-content {}
+  /* .my-graph-chart-controller */
+  &-controller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $chart-max-width;
+    height: 100%;
+    &__button {
+      height: 100%;
+    }
+  }
 }
 </style>

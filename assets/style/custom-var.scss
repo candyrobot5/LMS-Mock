@@ -10,7 +10,7 @@ $sidebar-opened-width: 250px;
 $sidebar-collapsed-width: 50px;
 
 // chart
-$chart-width: 580px;
+$chart-max-width: 6000px;
 $chart-height: 400px;
 
 // export
@@ -23,6 +23,6 @@ $chart-height: 400px;
   sidebarClosedWidth: $sidebar-closed-width;
   sidebarOpenedWidth: $sidebar-opened-width;
   sidebarCollapsedWidth: $sidebar-collapsed-width;
-  chartWidth: $chart-width;
+  chartMaxWidth: $chart-max-width;
   chartHeight: $chart-height;
 }
