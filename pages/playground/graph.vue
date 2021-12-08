@@ -132,7 +132,7 @@ export default {
       ],
       rawData,
       baseIndex: 0,
-      perPage: 100,
+      perPage: 100, // グラフに表示するアイテム数
       stepTime
     }
   },

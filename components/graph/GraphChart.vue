@@ -18,8 +18,9 @@
       <div v-show="isHovered" class="my-graph-chart-controller">
         <b-row align-h="between" align-v="center" class="h-100">
           <b-col class="text-left h-100">
+            <!-- prev button -->
             <b-button
-              class="px-1 py-0 h-100 my-graph-chart-controller__button"
+              class="px-1 py-0 h-100 border-info my-graph-chart-controller__button"
               variant="light"
               :disabled="isDisabledPrevButton"
               @click="onPrev"
@@ -28,8 +29,9 @@
             </b-button>
           </b-col>
           <b-col class="text-right h-100">
+            <!-- next button -->
             <b-button
-              class="px-1 py-0 h-100 my-graph-chart-controller__button"
+              class="px-1 py-0 h-100 border-info my-graph-chart-controller__button"
               variant="light"
               :disabled="isDisabledNextButton"
               @click="onNext"
