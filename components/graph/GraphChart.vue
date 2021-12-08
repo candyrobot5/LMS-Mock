@@ -17,9 +17,9 @@
       <!-- controller -->
       <div v-show="isHovered" class="my-graph-chart-controller">
         <b-row align-h="between" align-v="center" class="h-100">
-          <b-col class="text-left my-graph-chart-controller__button">
+          <b-col class="text-left h-100">
             <b-button
-              class="px-1 py-0 h-100"
+              class="px-1 py-0 h-100 my-graph-chart-controller__button"
               variant="light"
               :disabled="isDisabledPrevButton"
               @click="onPrev"
@@ -27,9 +27,9 @@
               <b-icon icon="caret-left-fill" variant="info" />
             </b-button>
           </b-col>
-          <b-col class="text-right my-graph-chart-controller__button">
+          <b-col class="text-right h-100">
             <b-button
-              class="px-1 py-0 h-100"
+              class="px-1 py-0 h-100 my-graph-chart-controller__button"
               variant="light"
               :disabled="isDisabledNextButton"
               @click="onNext"
@@ -217,12 +217,13 @@ export default {
   /* .my-graph-chart-controller */
   &-controller {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: $chart-max-width;
-    height: 100%;
+    height: 40px;
     &__button {
       height: 100%;
+      width: 40px;
     }
   }
 }
