@@ -16,8 +16,8 @@
       </div>
       <!-- controller -->
       <div v-show="isHovered" class="my-graph-chart-controller">
-        <b-row align-h="between" align-v="center" class="h-100">
-          <b-col class="text-left h-100">
+        <b-row align-h="between" align-v="center" no-gutters class="h-100">
+          <b-col class="h-100 text-left">
             <!-- prev button -->
             <b-button
               class="px-1 py-0 h-100 border-info my-graph-chart-controller__button"
@@ -28,7 +28,7 @@
               <b-icon icon="caret-left-fill" variant="info" />
             </b-button>
           </b-col>
-          <b-col class="text-right h-100">
+          <b-col class="h-100 text-right">
             <!-- next button -->
             <b-button
               class="px-1 py-0 h-100 border-info my-graph-chart-controller__button"
