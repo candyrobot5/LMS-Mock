@@ -173,38 +173,10 @@
 </template>
 
 <script>
-/*
-class SelectedCourseUser {
-  constructor(groupId, userId, name) {
-    this.groupId = groupId
-    this.userId = userId
-    this.name = name
-  }
-}
-*/
-
-class CourseUser {
-  constructor(id, name) {
-    this.id = id
-    this.name = name
-    this.isChecked = false
-  }
-}
-
-class CourseGroup {
-  constructor(id, name, users) {
-    this.id = id
-    this.name = name
-    this.users = users
-  }
-}
-
-class Course {
-  constructor(id, name) {
-    this.id = id
-    this.name = name
-  }
-}
+import Course, {
+  Group as CourseGroup,
+  User as CourseUser
+} from '~/models/course'
 
 export default {
   name: 'PlaygroundCourceManage',

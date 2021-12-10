@@ -18,6 +18,7 @@
         <b-row no-gutters>
           <b-col cols="12">
             <b-card class="mx-3">
+              <!-- draggable -->
               <draggable
                 v-bind="draggableSettings"
                 @start="isDragging = true"
@@ -67,6 +68,7 @@
                     <th>Text</th>
                   </tr>
                 </thead>
+                <!-- draggable -->
                 <draggable
                   v-bind="draggableSettings"
                   key="draggable"
