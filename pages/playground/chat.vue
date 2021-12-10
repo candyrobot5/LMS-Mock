@@ -82,7 +82,7 @@
             <b-row class="bg-light my-message-box">
               <b-col cols="10" class="p-3">
                 <!-- message box -->
-                <b-row>
+                <b-row class="h-100">
                   <b-col cols="12">
                     <b-textarea
                       v-model.trim="inputText"
