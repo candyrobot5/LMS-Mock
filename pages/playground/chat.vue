@@ -52,10 +52,10 @@
                     "
                   >
                     <div
-                      v-for="(message, mIdx) in message.message.split('\n')"
+                      v-for="(msg, mIdx) in message.message.split('\n')"
                       :key="mIdx"
                     >
-                      {{ message.length > 0 ? message : '\u00A0' }}
+                      {{ msg.length > 0 ? msg : '\u00A0' }}
                     </div>
                   </div>
                 </b-col>
