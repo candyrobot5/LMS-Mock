@@ -39,7 +39,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    ['@nuxtjs/date-fns', { locales: ['ja'] }]
+    ['@nuxtjs/date-fns', { locales: ['ja'] }],
+    '@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

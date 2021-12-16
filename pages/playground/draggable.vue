@@ -31,7 +31,7 @@
                 >
                   <b-col
                     v-for="(item, lIdx) in list"
-                    :key="lIdx"
+                    :key="`card-${lIdx}`"
                     cols="3"
                     class="mb-2"
                   >
