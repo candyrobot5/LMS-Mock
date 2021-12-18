@@ -1,5 +1,9 @@
+/* custom */
 @import 'custom-var.scss';
 @import 'custom-style.scss';
+/* import CSS framework */
+@import '@fortawesome/fontawesome-free/css/all.css';
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-vue/src/index.scss';
+/* CSS framework customize */
 @import 'custom-bootstrap.scss';

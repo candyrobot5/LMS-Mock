@@ -17,6 +17,12 @@ module.exports = {
       {
         ignorePseudoElements: ['v-deep']
       }
+    ],
+    'font-family-no-missing-generic-family-keyword': [
+      true,
+      {
+        ignoreFontFamilies: ['FontAwesome', 'Font Awesome 5 Free']
+      }
     ]
   }
 }

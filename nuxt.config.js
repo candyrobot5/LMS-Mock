@@ -13,7 +13,7 @@ export default {
   head: {
     title: 'LMS-Mock',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -25,7 +25,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@fortawesome/fontawesome-free/css/all.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [`~/plugins/jquery`, '~/plugins/api'],
@@ -40,6 +40,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/date-fns', { locales: ['ja'] }],
+    // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss'
   ],
 
@@ -49,7 +50,8 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    'vue-types'
   ],
 
   // Bootstrap-Vue configuration:

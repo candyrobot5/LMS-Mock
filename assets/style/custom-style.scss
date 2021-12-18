@@ -35,7 +35,7 @@ body {
       }
       /* .app-main-content-body */
       &-body {
-        height: calc(100% - $app-main-content-header-height);
+        height: calc(100% - #{$app-main-content-header-height});
       }
     }
   }

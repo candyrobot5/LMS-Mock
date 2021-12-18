@@ -62,10 +62,13 @@ export default {
             }
           },
           child: [
-            { href: '/playground/chat', title: '2. チャット' },
-            { href: '/playground/course-manage', title: '3. コース管理' },
-            { href: '/playground/draggable', title: '4. リストのドラッグ' },
-            { href: '/playground/graph', title: '5. 集中度測定' }
+            { href: '/playground/chat', title: 'チャット' },
+            { href: '/playground/course-manage', title: 'コース管理' },
+            { href: '/playground/draggable', title: 'リストのドラッグ' },
+            { href: '/playground/graph', title: '集中度測定' },
+            { href: '/playground/pdf-viewer', title: 'スライド教材' },
+            { href: '/playground/movie-viewer', title: '動画教材' },
+            { href: '/playground/course-list', title: 'コース一覧画面' }
           ]
         }
       ]
