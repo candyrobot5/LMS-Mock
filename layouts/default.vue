@@ -52,8 +52,8 @@ export default {
   },
   methods: {
     // サイドバーの開閉イベント
-    onUpdateSidebarState(evt) {
-      this.sidebarState = evt
+    onUpdateSidebarState(event) {
+      this.sidebarState = event
     },
     // ヘッダーメニュークリック
     onClickHeaderMenu() {

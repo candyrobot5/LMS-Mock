@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import { gql } from 'graphql-tag'
 import { User as ChatUser, Message as ChatMessage } from '~/models/chat'
 
 export default {
@@ -216,14 +216,14 @@ export default {
 $my-message-box-height: 150px;
 
 .my-message-box {
-  height: calc($my-message-box-height + ($app-main-content-padding * 2));
+  height: calc(#{$my-message-box-height} + (#{$app-main-content-padding} * 2));
 }
 .my-chat {
   /* .my-chat__mesages */
   &__messages {
     height: calc(
-      100vh - $my-message-box-height - $app-header-height -
-        $app-main-content-header-height - ($app-main-content-padding * 2)
+      100vh - #{$my-message-box-height} - #{$app-header-height} - #{$app-main-content-header-height} -
+        (#{$app-main-content-padding} * 2)
     );
     overflow: scroll;
     /* .my-chat__messages-avatar */

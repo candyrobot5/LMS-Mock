@@ -267,14 +267,14 @@ export default {
     /**
      * コースの選択イベント
      */
-    onSelectCourse(event, courseId) {
+    onSelectCourse(_, courseId) {
       this.selectedCourseId = courseId
     },
     /**
      * 左ペインのユーザー一覧のチェックボックスのチェックイベント
      *  チェックボックスのチェックを入れる/外す
      */
-    onCheckUnselectUser(event, groupId, userId) {
+    onCheckUnselectUser(_, groupId, userId) {
       const user = this.groups
         .find((group) => group.id === groupId)
         ?.users.find((user) => user.id === userId)
@@ -285,7 +285,7 @@ export default {
     /**
      * 左ペインのユーザー一覧の全てのユーザーにチェックを入れる
      */
-    onAllCheckUnselectUsers(event) {
+    onAllCheckUnselectUsers(_) {
       this.unselectedUsersOptions.forEach((user) => {
         user.isChecked = true
       })
@@ -294,7 +294,7 @@ export default {
      * 右ペインのユーザー一覧のチェックボックスのチェックイベント
      *  チェックボックスのチェックを入れる/外す
      */
-    onCheckSelectUser(event, groupId, userId) {
+    onCheckSelectUser(_, groupId, userId) {
       const user = this.selectedUsers.find(
         (user) => user.groupId === groupId && user.id === userId
       )
@@ -305,7 +305,7 @@ export default {
     /**
      * 右ペインのユーザー一覧の全てのユーザーにチェックを入れる
      */
-    onAllCheckSelectUsers(event) {
+    onAllCheckSelectUsers(_) {
       this.selectedUsers.forEach((user) => {
         user.isChecked = true
       })
@@ -313,7 +313,7 @@ export default {
     /**
      * 選択済みユーザー一覧に追加する
      */
-    onAddSelectedUser(event) {
+    onAddSelectedUser(_) {
       // 右ペインに追加する
       const checkedUsers = this.unselectedUsersOptions
         .filter((user) => user.isChecked)
@@ -342,7 +342,7 @@ export default {
     /**
      * 選択済みユーザー一覧から削除する
      */
-    onRemoveSelectedUser(event) {
+    onRemoveSelectedUser(_) {
       // 左ペインに元に戻す
       this.selectedUsers
         .filter((user) => user.isChecked)
@@ -387,7 +387,7 @@ $my-course-sidebar-width: 350px;
   }
   /* .my-course-main */
   &-main {
-    width: calc(100% - $my-course-sidebar-width);
+    width: calc(100% - #{$my-course-sidebar-width});
   }
   /* .my-course-users */
   &-users {
