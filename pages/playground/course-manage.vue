@@ -44,7 +44,7 @@
             </b-card>
           </b-col>
           <!-- course body main -->
-          <b-col md="auto" align-self="stretch" class="my-course-main">
+          <b-col md="auto" align-self="stretch" class="my-course-container">
             <b-card class="h-100 bg-transparent" body-class="p-2">
               <b-row>
                 <b-col cols="12">
@@ -385,8 +385,8 @@ $my-course-sidebar-width: 350px;
   &-sidebar {
     width: $my-course-sidebar-width;
   }
-  /* .my-course-main */
-  &-main {
+  /* .my-course-container */
+  &-container {
     width: calc(100% - #{$my-course-sidebar-width});
   }
   /* .my-course-users */
