@@ -26,9 +26,6 @@ export const mutations = {
   },
   setFilters(state, filters) {
     state.filters = filters
-  },
-  resetFilters(state) {
-    state.filters = { ...init.filters }
   }
 }
 
@@ -40,6 +37,6 @@ export const actions = {
     commit('setFilters', filters)
   },
   resetFilters({ commit }) {
-    commit('resetFilters')
+    commit('setFilters', { ...init.filters })
   }
 }
