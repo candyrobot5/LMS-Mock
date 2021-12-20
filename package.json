@@ -27,9 +27,11 @@
     "graphql-tag": "^2.12.6",
     "jquery": "^3.6.0",
     "nuxt": "^2.15.7",
+    "pdfjs-dist": "^2.12.313",
     "sass": "1.32.13",
     "sass-loader": "^10",
     "vue-chartjs": "^3.5.1",
+    "vue-pdf": "^4.3.0",
     "vue-sidebar-menu": "^4.8.1",
     "vue-types": "^4.1.1",
     "vuedraggable": "^2.24.3"
